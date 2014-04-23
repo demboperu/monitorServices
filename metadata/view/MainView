@@ -1,0 +1,636 @@
+{
+    "type": "Ext.container.Viewport",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|initialView": true,
+        "designer|userClassName": "MainView",
+        "id": "mainView",
+        "layout": "fit"
+    },
+    "designerId": "698b7864-df89-4b9c-959f-0212282d4ead",
+    "cn": [
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": null,
+                "collapsed": false,
+                "id": null,
+                "itemId": "mainPanel",
+                "layout": "border",
+                "manageHeight": false,
+                "resizable": false,
+                "title": "My Tasks"
+            },
+            "configAlternates": {
+                "resizable": "boolean"
+            },
+            "designerId": "210be6aa-2456-4659-bafc-73e452201e3f",
+            "cn": [
+                {
+                    "type": "Ext.toolbar.Toolbar",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "border": null,
+                        "designer|displayName": null,
+                        "dock": "top",
+                        "hideMode": null,
+                        "id": null,
+                        "itemId": "mainToolbar"
+                    },
+                    "designerId": "e4d9d8b0-eb3b-4e18-9fb8-e19c2f8cac69",
+                    "cn": [
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "html": null,
+                                "layout|flex": null,
+                                "text": null
+                            },
+                            "designerId": "7fb76c5b-6db8-43ae-b260-7ec2cba7ff16"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "icon": "resources/images/add.png",
+                                "id": null,
+                                "itemId": "addButton",
+                                "layout|flex": null,
+                                "text": "Add Task"
+                            },
+                            "designerId": "bea93a2e-0317-4e11-8c26-d37ea2ff1afa"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "bodyBorder": true,
+                        "border": "2 2 2 2",
+                        "dock": null,
+                        "forceFit": true,
+                        "id": "",
+                        "itemId": "gridPanel",
+                        "layout|collapseMode": "mini",
+                        "layout|flex": 1,
+                        "layout|region": "west",
+                        "layout|split": true,
+                        "resizable": false,
+                        "resizeHandles": null,
+                        "store": "Tasks",
+                        "title": null,
+                        "width": 100
+                    },
+                    "configAlternates": {
+                        "resizable": "boolean"
+                    },
+                    "designerId": "b85ec3a4-7231-4b41-bddc-0964306009f7",
+                    "cn": [
+                        {
+                            "type": "Ext.grid.column.Template",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "flex": 1,
+                                "text": "Task"
+                            },
+                            "designerId": "b23f7bd5-24b9-479c-92fe-76801bfef115",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "tpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "tpl",
+                                        "implHandler": [
+                                            "<span style=\"font-size: 1.1em; font-weight: bold\">{name}</span>"
+                                        ]
+                                    },
+                                    "designerId": "ee958bca-05fc-4ab0-929e-6375102fb93e"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "editor",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "TitleField",
+                                        "name": "name"
+                                    },
+                                    "designerId": "bcfa43e7-112f-4f44-9173-89a57d77df7d"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.grid.column.Template",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "flex": 1,
+                                "text": "State"
+                            },
+                            "designerId": "0b0fe850-a6c8-49b8-8902-253f6245214b",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "tpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "tpl",
+                                        "implHandler": [
+                                            "<table>\r",
+                                            "    <tr>\r",
+                                            "        <td style=\"padding-right: 8px\">\r",
+                                            "            <img src=\"resources/images/{icon}\" title=\"{state} Priority\" />\r",
+                                            "        </td>\r",
+                                            "    \t<td>\r",
+                                            "            {state}\r",
+                                            "        </td>\r",
+                                            "    </tr>\r",
+                                            "</table>"
+                                        ]
+                                    },
+                                    "designerId": "c851ddb1-9b16-40a6-8215-53306e07d37d"
+                                },
+                                {
+                                    "type": "Ext.form.field.ComboBox",
+                                    "reference": {
+                                        "name": "editor",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "PriorityField",
+                                        "displayField": "priority",
+                                        "editable": false,
+                                        "emptyText": "Select Priority",
+                                        "name": "priority",
+                                        "store": "Priorities",
+                                        "valueField": "priority"
+                                    },
+                                    "designerId": "28cea1d3-1a0f-4d06-866f-5ab2dd393956"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.grid.column.Column",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dataIndex": "build_number",
+                                "text": "Build Number"
+                            },
+                            "designerId": "c6028ffa-c385-48df-b0df-8d9016f76890"
+                        },
+                        {
+                            "type": "Ext.grid.plugin.RowEditing",
+                            "reference": {
+                                "name": "plugins",
+                                "type": "array"
+                            },
+                            "codeClass": "Ext.grid.plugin.RowEditing",
+                            "designerId": "ef9c1521-2641-4052-bedc-ec2960c6af32"
+                        },
+                        {
+                            "type": "Ext.grid.column.Column",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dataIndex": "group",
+                                "flex": 1,
+                                "text": "Group"
+                            },
+                            "designerId": "f81f031b-4717-497c-9023-60e28dd1ab49"
+                        },
+                        {
+                            "type": "Ext.grid.column.Column",
+                            "reference": {
+                                "name": "columns",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dataIndex": "url",
+                                "flex": 3,
+                                "text": "URL"
+                            },
+                            "designerId": "cd8ad336-5c92-44fb-bd48-883c77a101ea"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "animCollapse": null,
+                        "autoScroll": true,
+                        "bodyBorder": true,
+                        "bodyPadding": "10 10 10 10",
+                        "border": "2 2 2 2",
+                        "collapseDirection": null,
+                        "collapseFirst": false,
+                        "collapsed": null,
+                        "collapsible": false,
+                        "data": [
+                            "{}"
+                        ],
+                        "designer|displayName": null,
+                        "id": null,
+                        "itemId": "detailsPanel1",
+                        "layout": "fit",
+                        "layout|collapseMode": "header",
+                        "layout|region": "center",
+                        "manageHeight": false,
+                        "resizable": false,
+                        "title": null
+                    },
+                    "configAlternates": {
+                        "resizable": "boolean"
+                    },
+                    "designerId": "5081511a-b727-4226-93b4-5e5d714628fd",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Panel",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "activeTab": 0,
+                                "anchorSize": 100,
+                                "width": 400
+                            },
+                            "designerId": "f4e02571-29a5-44ce-b65a-5a91fc94b437",
+                            "cn": [
+                                {
+                                    "type": "Ext.panel.Panel",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "layout": "fit",
+                                        "title": "Status History"
+                                    },
+                                    "designerId": "0fa45c8c-e226-49f2-ac72-eeea7149eb1e",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.tab.Tab",
+                                            "reference": {
+                                                "name": "tabConfig",
+                                                "type": "object"
+                                            },
+                                            "codeClass": null,
+                                            "designerId": "7e72ccca-7935-45bf-8f77-01231c146978"
+                                        },
+                                        {
+                                            "type": "Ext.chart.Chart",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "animate": true,
+                                                "height": 250,
+                                                "id": "chartStatus",
+                                                "insetPadding": 20,
+                                                "shadow": false,
+                                                "store": "PingStore",
+                                                "width": 400
+                                            },
+                                            "configAlternates": {
+                                                "animate": "boolean"
+                                            },
+                                            "designerId": "9368a92b-40d1-4cdd-8b99-1e83f6ca16a9",
+                                            "isBuiltIn": true,
+                                            "iconCls": "icon-line-chart",
+                                            "autoName": "LineChart",
+                                            "cn": [
+                                                {
+                                                    "type": "Ext.chart.axis.Numeric",
+                                                    "reference": {
+                                                        "name": "axes",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fields": [
+                                                            "status"
+                                                        ],
+                                                        "grid": [
+                                                            "{odd: {\r",
+                                                            "                        fill: '#dedede',\r",
+                                                            "                        stroke: '#ddd',\r",
+                                                            "                        'stroke-width': 0.5\r",
+                                                            "}}"
+                                                        ],
+                                                        "label": [
+                                                            "{ 0 : 'sss',\r",
+                                                            " 2 : 'fff'}"
+                                                        ],
+                                                        "maximum": 5,
+                                                        "minimum": -3,
+                                                        "title": "Status"
+                                                    },
+                                                    "designerId": "2d81915f-7d35-4ba8-827e-90f5f0606d4a"
+                                                },
+                                                {
+                                                    "type": "Ext.chart.axis.Time",
+                                                    "reference": {
+                                                        "name": "axes",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "constrain": true,
+                                                        "dateFormat": "H:i:s",
+                                                        "fields": [
+                                                            "ping_date"
+                                                        ],
+                                                        "grid": true,
+                                                        "position": "bottom",
+                                                        "title": "Date"
+                                                    },
+                                                    "configAlternates": {
+                                                        "grid": "boolean"
+                                                    },
+                                                    "designerId": "722f8974-df3f-47f6-a359-5119a73ed712"
+                                                },
+                                                {
+                                                    "type": "Ext.chart.series.Line",
+                                                    "reference": {
+                                                        "name": "series",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "axis": [
+                                                            "left",
+                                                            "bottom"
+                                                        ],
+                                                        "label": [
+                                                            "{display: 'none',\r",
+                                                            "field: 'ping_date',\r",
+                                                            "renderer: function(v) { return v >> 0; },\r",
+                                                            "'text-anchor': 'middle'\r",
+                                                            "}"
+                                                        ],
+                                                        "markerConfig": [
+                                                            "{radius: 5,\r",
+                                                            " size: 5,\r",
+                                                            "'fill': '#f00'}"
+                                                        ],
+                                                        "xField": "ping_date",
+                                                        "yField": [
+                                                            "status"
+                                                        ]
+                                                    },
+                                                    "configAlternates": {
+                                                        "smooth": "boolean"
+                                                    },
+                                                    "designerId": "53bcb569-e58e-469f-96ae-f7b68084e1a0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.panel.Panel",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "title": "Response from server"
+                                    },
+                                    "designerId": "99f3ae25-3ab8-4db0-94d4-ba6ec52a15a0",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.panel.Panel",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "autoScroll": true,
+                                                "bodyBorder": true,
+                                                "bodyPadding": "10 10 10 10",
+                                                "border": "2 2 2 2",
+                                                "data": [
+                                                    "{}"
+                                                ],
+                                                "designer|displayName": null,
+                                                "id": null,
+                                                "itemId": "detailsPanel",
+                                                "layout": "fit",
+                                                "manageHeight": false,
+                                                "resizable": false,
+                                                "title": null
+                                            },
+                                            "configAlternates": {
+                                                "resizable": "boolean"
+                                            },
+                                            "designerId": "136884f9-9ae1-4ffa-9933-a0d47a86ced7",
+                                            "cn": [
+                                                {
+                                                    "type": "Ext.XTemplate",
+                                                    "reference": {
+                                                        "name": "tpl",
+                                                        "type": "object"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|displayName": "tpl",
+                                                        "implHandler": [
+                                                            "<h1>{name}</h1>\r",
+                                                            "<h2>{result}</h2>\r",
+                                                            "<pre>\r",
+                                                            "<code>\r",
+                                                            "{response}\r",
+                                                            "</code>\r",
+                                                            "</pre>\r",
+                                                            "\r",
+                                                            ""
+                                                        ]
+                                                    },
+                                                    "designerId": "68fd4e06-9ce6-4e57-b925-0817287cd4f5"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.tab.Tab",
+                                            "reference": {
+                                                "name": "tabConfig",
+                                                "type": "object"
+                                            },
+                                            "codeClass": null,
+                                            "designerId": "18ae32f6-3e6e-4f0e-8ef4-478a12627e6e"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.panel.Panel",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "title": "Status history 2"
+                                    },
+                                    "designerId": "5144f667-2fef-4ff0-8061-d7f6bd12201d",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.tab.Tab",
+                                            "reference": {
+                                                "name": "tabConfig",
+                                                "type": "object"
+                                            },
+                                            "codeClass": null,
+                                            "designerId": "6eaca91a-dfda-4198-b36c-6079898308b0"
+                                        },
+                                        {
+                                            "type": "Ext.chart.Chart",
+                                            "reference": {
+                                                "name": "dockedItems",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "animate": [
+                                                    "true"
+                                                ],
+                                                "dock": "top",
+                                                "height": 272,
+                                                "insetPadding": 5,
+                                                "shadow": false,
+                                                "store": "PingStore",
+                                                "width": 400
+                                            },
+                                            "designerId": "0c77c296-a25a-4fcd-bbf7-40933fe9b658",
+                                            "isBuiltIn": true,
+                                            "iconCls": "icon-line-chart",
+                                            "autoName": "LineChart",
+                                            "cn": [
+                                                {
+                                                    "type": "Ext.chart.axis.Category",
+                                                    "reference": {
+                                                        "name": "axes",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fields": [
+                                                            "ping_date"
+                                                        ],
+                                                        "title": "Date"
+                                                    },
+                                                    "designerId": "d3842e02-737f-41b7-8388-8a8a864a7e6b"
+                                                },
+                                                {
+                                                    "type": "Ext.chart.axis.Numeric",
+                                                    "reference": {
+                                                        "name": "axes",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "constrain": false,
+                                                        "dashSize": 2,
+                                                        "decimals": 0,
+                                                        "maximum": 6,
+                                                        "minimum": 0,
+                                                        "title": "Status"
+                                                    },
+                                                    "designerId": "165da6eb-6332-42e7-b1a7-f5d8ab02d438"
+                                                },
+                                                {
+                                                    "type": "Ext.chart.series.Line",
+                                                    "reference": {
+                                                        "name": "series",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "markerConfig": [
+                                                            "{}"
+                                                        ],
+                                                        "smooth": 2,
+                                                        "title": [
+                                                            "aaa"
+                                                        ],
+                                                        "xField": "ping_date",
+                                                        "yField": [
+                                                            "status"
+                                                        ]
+                                                    },
+                                                    "designerId": "e5706bd3-bea8-4acf-a02d-a412910c6c81"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

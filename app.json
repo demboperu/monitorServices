@@ -1,0 +1,8 @@
+{
+   "name": "monitor",
+   "requires": [],
+   "id": "308ec55a-453d-411d-9a43-ec5ada2dbacc",
+   "resources": [
+      "resources/css/main.css"
+   ]
+}

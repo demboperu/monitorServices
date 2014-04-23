@@ -1,0 +1,29 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "Tasks"
+        ],
+        "models": [
+            "Task",
+            "Ping"
+        ],
+        "name": "monitor",
+        "requires": [
+            "Ext.window.MessageBox"
+        ],
+        "stores": [
+            "PingStore"
+        ],
+        "views": [
+            "TaskForm",
+            "MainView"
+        ]
+    },
+    "designerId": "application"
+}

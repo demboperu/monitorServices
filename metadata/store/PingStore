@@ -1,0 +1,65 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": null,
+        "designer|userClassName": "PingStore",
+        "model": null,
+        "storeId": "PingStore"
+    },
+    "designerId": "f70e510e-bae1-4a14-95e1-0a0b856cf042",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "ping_date"
+            },
+            "designerId": "708f2ae8-5001-428e-8bd8-f0819d2e3847"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "status"
+            },
+            "designerId": "fec6e793-da26-4a18-a4ab-46902075cf1d"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id"
+            },
+            "designerId": "534e190b-8779-419b-8798-8ec976437f9b"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "element_id"
+            },
+            "designerId": "240b6a79-a934-4f83-8a9f-3d71a267925c"
+        }
+    ]
+}

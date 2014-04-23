@@ -1,0 +1,685 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "dataPings": [
+            "[]"
+        ],
+        "designer|userClassName": "Tasks",
+        "idService": 0,
+        "stores": [
+            "Tasks",
+            "Priorities",
+            "PingStore"
+        ]
+    },
+    "configAlternates": {
+        "dataPings": "array",
+        "idService": "number"
+    },
+    "designerId": "2856dba3-c512-4b02-8986-a3e844ab0885",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "dataPings",
+            "type": "string"
+        },
+        {
+            "group": "(Custom Properties)",
+            "name": "idService",
+            "type": "string"
+        }
+    ],
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#gridPanel",
+                "designer|params": [
+                    "target",
+                    "record"
+                ],
+                "fn": "view",
+                "implHandler": [
+                    "var me = this;\r",
+                    "console.log('Editing');\r",
+                    "var details = this.getDetailsPanel(),\t// Get detail panel via controller ref\r",
+                    "    toolbar = this.getDetailsToolbar();\t// Get detail panel toolbar via controller ref\r",
+                    "\r",
+                    "\r",
+                    "var dataService = {\r",
+                    "    id: record.data.id,\r",
+                    "    url: record.data.url,\r",
+                    "    method: record.data.method\r",
+                    "};\r",
+                    "this.dataPings = [{pings : []}];\r",
+                    "this.idService = record.data.id;\r",
+                    "\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: 'http://10.50.24.132:3000/request',\r",
+                    "    params: dataService,\r",
+                    "    method: 'post',\r",
+                    "    //timeout: 5000,\r",
+                    "    success: function(response) {\r",
+                    "        console.log('response');\r",
+                    "        \r",
+                    "        test = response;\r",
+                    "        if(response.responseText){\r",
+                    "            response.responseText = JSON.parse(response.responseText);\r",
+                    "            if(response.responseText.response)\r",
+                    "                response.responseText.response = JSON.parse(response.responseText.response);\r",
+                    "        }\r",
+                    "        \r",
+                    "        \r",
+                    "        var formatedJson = me.syntaxHighlight(response.responseText);\r",
+                    "        \r",
+                    "        details.update({'response':formatedJson});\r",
+                    "        //details.labelJson.update(formatedJson);\r",
+                    "        \r",
+                    "    },\r",
+                    "    failure: function(response){\r",
+                    "        \r",
+                    "        console.log(response.responseText);\r",
+                    "        var formatedJson = me.syntaxHighlight(response.responseText);\r",
+                    "        details.update({response:formatedJson});\r",
+                    "    }\r",
+                    "});\r",
+                    "\r",
+                    "var me = this;\r",
+                    "var pingStore = me.getPingStoreStore();\r",
+                    "pingStore.removeAll();\r",
+                    "\r",
+                    "var chart = Ext.getCmp('chartStatus');\r",
+                    "chart.doAutoRender();\r",
+                    "\r",
+                    "// this.tunningServiceStore(store,url, true, objparams);\r",
+                    "// var proxy =  {\r",
+                    "//                 type: 'ajax',\r",
+                    "//                 url : 'http://10.50.24.160:3000/pings',\r",
+                    "//                 reader: {\r",
+                    "//                     type: 'json'\r",
+                    "//                 }\r",
+                    "//             };\r",
+                    "\r",
+                    "//mon instead on\r",
+                    "// pingStore.on('beforeload', function(store, operation) {\r",
+                    "// //     store.setProxy(proxy);\r",
+                    "//     store.getProxy().setExtraParam(\"id\",record.data.id);\r",
+                    "// //    console.log('+1');\r",
+                    "\r",
+                    "// });\r",
+                    "\r",
+                    "//this.loadPings(this.idService,0);\r",
+                    "\r",
+                    "\r",
+                    "\r",
+                    "\r",
+                    "\r",
+                    "// Show toolbar\r",
+                    "//toolbar.show();\r",
+                    ""
+                ],
+                "name": "select",
+                "scope": "me"
+            },
+            "designerId": "df446b75-e4d7-445e-89e4-61f7a5aefeae"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#mainPanel #addButton",
+                "designer|params": [
+                    "target"
+                ],
+                "fn": "add",
+                "implHandler": [
+                    "\r",
+                    "var formWindow = Ext.create('widget.taskform'),\t// Create new form window\r",
+                    "\tform = formWindow.down('form').getForm(),\t// Get form within window\r",
+                    "    model = Ext.create('model.task');\t\t// Create new Task model\r",
+                    "\r",
+                    "// Associate model with form\r",
+                    "form.loadRecord(model);\r",
+                    "\r",
+                    "// Show window\r",
+                    "formWindow.show();\r",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "e36d723b-3313-48ef-ac07-dece1e00f055"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#detailsPanel #editButton",
+                "designer|params": [
+                    "target"
+                ],
+                "fn": "edit",
+                "implHandler": [
+                    "\r",
+                    "var data = target.up('panel').data,\t\t\t\t\t\t// Get panel's assosiated data\r",
+                    "\tstore = this.getTasksStore(),\t\t\t\t\t\t// Get Tasks store\r",
+                    "\ttask = store.getById(data.id),\t\t\t\t\t\t// Get current task\r",
+                    "    formWindow = Ext.create('widget.taskform'),\t\t\t// Create new form window\r",
+                    "\tform = formWindow.down('form').getForm();\t\t\t// Get form within window\r",
+                    "\r",
+                    "// Load task model into form\r",
+                    "form.loadRecord(task);\r",
+                    "\r",
+                    "// Show window\r",
+                    "formWindow.show();\r",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "6c1bbf38-d9cb-47ea-9ac3-355220170579"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#recordForm #saveButton",
+                "designer|params": [
+                    "target"
+                ],
+                "fn": "save",
+                "implHandler": [
+                    "\r",
+                    "var form = target.up('form').getForm(),\t\t\t// Get parent form\r",
+                    "\tformWindow = target.up('window'),\t\t\t// Get parent window\r",
+                    "\tdetailsPanel = this.getDetailsPanel(),\t\t// Get details panel\r",
+                    "\tdetailsToolbar = this.getDetailsToolbar(),\t// Get detail panel toolbar\r",
+                    "\ttask = form.getRecord(),\t\t\t\t\t// Get task associated with form\r",
+                    "\tstore = this.getTasksStore(),\t\t\t\t// Get Records store\r",
+                    "\tisNew = !task.get('id');\t\t\t\t\t// Is new if no task ID exists\r",
+                    "\r",
+                    "\r",
+                    "// Update associated task with form values\r",
+                    "var errors = form.updateRecord();\r",
+                    "\r",
+                    "// Valid\r",
+                    "if (form.isValid()) {\r",
+                    "\r",
+                    "    // Add to store if new task\r",
+                    "    if (isNew) {\r",
+                    "\r",
+                    "        // Assign the task ID\r",
+                    "        // Normally, this would be a generated ID\r",
+                    "        var id = store.getTotalCount() + 1;\r",
+                    "        task.set(\"id\", id);\r",
+                    "\r",
+                    "        // Add to store\r",
+                    "        store.add(task);\r",
+                    "\r",
+                    "    }\r",
+                    "\r",
+                    "    // Commit changes\r",
+                    "    store.commitChanges();\r",
+                    "\r",
+                    "    // Update detail panel\r",
+                    "    detailsPanel.update(task.getData());\r",
+                    "\r",
+                    "    // Close window\r",
+                    "    formWindow.destroy();\r",
+                    "\r",
+                    "}\r",
+                    "\r",
+                    "\r",
+                    "// Invalid\r",
+                    "else {\r",
+                    "\r",
+                    "    // Show errors on form\r",
+                    "    form.markInvalid(errors);\r",
+                    "\r",
+                    "}\r",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "f27cbf84-7243-4479-90a4-df42d4f775ab"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#recordForm #cancelButton",
+                "designer|params": [
+                    "target"
+                ],
+                "fn": "cancelEdit",
+                "implHandler": [
+                    "\r",
+                    "// Get the window and close it\r",
+                    "var formWindow = target.up(\"window\");\r",
+                    "\tformWindow.destroy();\r",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "d0c4a0b7-dfc7-4587-919c-a603c5f4a4ff"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#detailsPanel #removeButton",
+                "designer|params": [
+                    "target"
+                ],
+                "fn": "remove",
+                "implHandler": [
+                    "\r",
+                    "var me = this;\r",
+                    "\r",
+                    "// Confirm this delete\r",
+                    "Ext.Msg.confirm('Confirm', 'Are you sure you want to delete this task?', function(btn) {\r",
+                    "\r",
+                    "    // User confirmed yes\r",
+                    "    if (btn == 'yes') {\r",
+                    "\r",
+                    "        var data = target.up('panel').data,\t\t\t\t// Get assosiated data\r",
+                    "            store = me.getTasksStore(),\t\t\t\t\t// Get tasks store\r",
+                    "            task = store.getById(data.id),\t\t\t\t// Get current task\r",
+                    "            detailsPanel = me.getDetailsPanel(),\t\t// Get details panel\r",
+                    "            detailsToolbar = me.getDetailsToolbar();\t// Get details panel toolbar\r",
+                    "\r",
+                    "        // Delete from store\r",
+                    "        store.remove(task);\r",
+                    "\r",
+                    "        // Clear panel content\r",
+                    "        detailsPanel.update(null);\r",
+                    "\r",
+                    "        // Hide toolbar\r",
+                    "        detailsToolbar.hide();\r",
+                    "\r",
+                    "    }\r",
+                    "\r",
+                    "\r",
+                    "});\r",
+                    ""
+                ],
+                "name": "click",
+                "scope": "me"
+            },
+            "designerId": "b98ca3bb-f3ae-4325-bb62-345e81cd9b07"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "detailsPanel",
+                "selector": "#detailsPanel"
+            },
+            "designerId": "d5fcba7c-366a-4285-baa8-1ad5e532d2d0"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "detailsToolbar",
+                "selector": "#detailsPanel #detailsToolbar",
+                "xtype": null
+            },
+            "designerId": "fc4ec857-1bbe-40eb-800c-d002cae9f090"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "application"
+                ],
+                "fn": "init",
+                "implHandler": [
+                    "var me = this;\r",
+                    "\r",
+                    "var taskStore = me.getTasksStore();\r",
+                    "var task = taskStore.data.items;\r",
+                    "\r",
+                    "Ext.Date.fuzzy = function(time, local){\r",
+                    "\r",
+                    "\tlocal = (!local) && (local = Date.now());\r",
+                    "\r",
+                    "\tif (typeof time !== 'number' || typeof local !== 'number') {\r",
+                    "\t\treturn;\r",
+                    "\t}\r",
+                    "\r",
+                    "\tvar\r",
+                    "\t\toffset = Math.abs((local - time)/1000),\r",
+                    "\t\tspan   = [],\r",
+                    "\t\tMINUTE = 60,\r",
+                    "\t\tHOUR   = 3600,\r",
+                    "\t\tDAY    = 86400,\r",
+                    "\t\tWEEK   = 604800,\r",
+                    "\t\tMONTH  = 2629744,\r",
+                    "\t\tYEAR   = 31556926;\r",
+                    "\t\tDECADE = 315569260;\r",
+                    "\r",
+                    "\tif (offset <= MINUTE)              span = [ '', 'moments' ];\r",
+                    "\telse if (offset < (MINUTE * 60))   span = [ Math.round(Math.abs(offset / MINUTE)), 'min' ];\r",
+                    "\telse if (offset < (HOUR * 24))     span = [ Math.round(Math.abs(offset / HOUR)), 'hr' ];\r",
+                    "\telse if (offset < (DAY * 7))       span = [ Math.round(Math.abs(offset / DAY)), 'day' ];\r",
+                    "\telse if (offset < (WEEK * 52))     span = [ Math.round(Math.abs(offset / WEEK)), 'week' ];\r",
+                    "\telse if (offset < (YEAR * 10))     span = [ Math.round(Math.abs(offset / YEAR)), 'year' ];\r",
+                    "\telse if (offset < (DECADE * 100))  span = [ Math.round(Math.abs(offset / DECADE)), 'decade' ];\r",
+                    "\telse                               span = [ '', 'a long time' ];\r",
+                    "\r",
+                    "\tspan[1] += (span[0] === 0 || span[0] > 1) ? 's' : '';\r",
+                    "\tspan = span.join(' ');\r",
+                    "\r",
+                    "\treturn (time <= local)  ? span + ' ago' : 'in ' + span;\r",
+                    "};\r",
+                    "\r",
+                    "var registerService = 0;\r",
+                    "test = task;\r",
+                    "\r",
+                    "me.dataPings = [{pings : []}];\r",
+                    "setInterval(function() {\r",
+                    "\r",
+                    "\r",
+                    "    Ext.Ajax.request({\r",
+                    "        url: 'http://10.50.24.132:3000/elements',\r",
+                    "        method: 'get',\r",
+                    "        success: function(response) {\r",
+                    "\r",
+                    "            var resp = JSON.parse(response.responseText);\r",
+                    "            taskStore.loadRawData(resp);\r",
+                    "\r",
+                    "            resp.forEach(function(value,index){\r",
+                    "               var record = taskStore.findRecord('id',value.id);\r",
+                    "//                 console.log('status',value.last_status===0);\r",
+                    "                if(value.last_status===0){\r",
+                    "                    record.set('icon','success.png');\r",
+                    "                    record.set('state', Ext.Date.fuzzy(new Date(value.last_status_change).getTime()));\r",
+                    "                }else{\r",
+                    "                    record.set('icon','fail.png');\r",
+                    "                    record.set('state', Ext.Date.fuzzy(new Date(value.last_status_change).getTime()));\r",
+                    "                }\r",
+                    "                record.set('response',me.syntaxHighlight(resp.response));\r",
+                    "                record.set('result',resp.result);\r",
+                    "//                 if(registerService === 0){\r",
+                    "//                     var servicePing = {name:record.get('name'),id:record.get('id'),pings:[]};\r",
+                    "//                     me.dataPings.push(servicePing);\r",
+                    "//                     registerService ++;\r",
+                    "// //                     console.log(me.dataPings);\r",
+                    "//                 }\r",
+                    "            });\r",
+                    "        },\r",
+                    "        failure: function(response){\r",
+                    "            record.set('state','fail');\r",
+                    "            record.set('icon','fail.png');\r",
+                    "            record.set('response', '');\r",
+                    "            record.set('result','timeOut');\r",
+                    "        }\r",
+                    "    });\r",
+                    "\r",
+                    "\r",
+                    "\r",
+                    "//     var pingStore = me.getPingStoreStore();\r",
+                    "\r",
+                    "//     pingStore.load({\r",
+                    "//         callback: function(records, operation, success) {\r",
+                    "//             console.log(\"success\");\r",
+                    "//         }\r",
+                    "//     });\r",
+                    "    me.loadPings(me.idService,1);\r",
+                    "\r",
+                    "        //pingStore.insert(0,Ext.data.Record({'status':1,'ping_date':new Date()}),'-1');\r",
+                    "\r",
+                    "}, 5000);"
+                ]
+            },
+            "designerId": "a77b66b0-23df-4590-b312-19147475f3a0"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "o"
+                ],
+                "fn": "clone",
+                "implHandler": [
+                    "var me = this;\r",
+                    "if(!o || 'object' !== typeof o) {\r",
+                    "    return o;\r",
+                    "}\r",
+                    "var c = 'function' === typeof o.pop ? [] : {};\r",
+                    "var p, v;\r",
+                    "for(p in o) {\r",
+                    "    if(o.hasOwnProperty(p)) {\r",
+                    "        v = o[p];\r",
+                    "        if(v && 'object' === typeof v) {\r",
+                    "            c[p] = me.clone(v);\r",
+                    "        }\r",
+                    "        else {\r",
+                    "            c[p] = v;\r",
+                    "        }\r",
+                    "    }\r",
+                    "}\r",
+                    "return c;"
+                ]
+            },
+            "designerId": "b0bd33c9-2ac0-4406-a36b-ab2a213e2025"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "service",
+                    "target"
+                ],
+                "fn": "sendRequest",
+                "implHandler": [
+                    "var me = this;\r",
+                    "\r",
+                    "var dataService = {\r",
+                    "    id: service.data.id,\r",
+                    "    url: service.data.url,\r",
+                    "    method: service.data.method\r",
+                    "};\r",
+                    "var taskStore = me.getTasksStore();\r",
+                    "var record = taskStore.findRecord('id',dataService.id);\r",
+                    "record.set('icon','loader.gif');\r",
+                    "\r",
+                    "//console.log('data',dataService);\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: 'http://10.50.24.160:3000/request',\r",
+                    "    params: dataService,\r",
+                    "    method: 'post',\r",
+                    "    //timeout: 5000,\r",
+                    "    success: function(response) {\r",
+                    "        //console.log('id',service.data.id);\r",
+                    "        var resp = JSON.parse(response.responseText);\r",
+                    "        //console.log(resp);\r",
+                    "        if(resp.successfull){\r",
+                    "            record.set('state','success');\r",
+                    "            record.set('icon','success.png');\r",
+                    "        }else{\r",
+                    "            record.set('state','fail');\r",
+                    "            record.set('icon','fail.png');\r",
+                    "        }\r",
+                    "        record.set('response',me.syntaxHighlight(resp.response));\r",
+                    "        record.set('result',resp.result);\r",
+                    "    },\r",
+                    "    failure: function(response){\r",
+                    "        //console.log('id',service.data.id);\r",
+                    "        record.set('state','fail');\r",
+                    "        record.set('icon','fail.png');\r",
+                    "        console.log(arguments);\r",
+                    "        record.set('response', '');\r",
+                    "        record.set('result','timeOut');\r",
+                    "    }\r",
+                    "});"
+                ]
+            },
+            "designerId": "6650dba4-b39c-410e-a4b0-47819c58021c"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "json"
+                ],
+                "fn": "syntaxHighlight",
+                "implHandler": [
+                    "if (typeof json == 'string') {\r",
+                    "    //console.log(json);\r",
+                    "    try{\r",
+                    "        json = JSON.parse(json);\r",
+                    "    }catch(e){\r",
+                    "        return json;\r",
+                    "    }\r",
+                    "\r",
+                    "}\r",
+                    "json = JSON.stringify(json, null, 2);\r",
+                    "return json;"
+                ]
+            },
+            "designerId": "2635d5c9-5091-4be7-92df-1d4d0c8fcd16"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "idService",
+                    "scopeIn"
+                ],
+                "fn": "loadPings",
+                "implHandler": [
+                    "var me = this;\r",
+                    "var chart = Ext.getCmp('chartStatus');\r",
+                    "Ext.Ajax.request({\r",
+                    "    method : 'GET',\r",
+                    "    url : 'http://10.50.24.132:3000/pings?id=' + idService,\r",
+                    "    success : function(response){\r",
+                    "        var data = Ext.JSON.decode(response.responseText);\r",
+                    "//         var idx = me.searchServiceInPings(idService);\r",
+                    "        var idx = 0;\r",
+                    "        var objService = me.dataPings[idx];\r",
+                    "        var markerIndex = chart.markerIndex || 0;\r",
+                    "        me.dataPings[idx].pings.push(data[0]);\r",
+                    "        var timeAxis = chart.axes.get(1);\r",
+                    "        var series = chart.series.get(0);\r",
+                    "        series.markerConfig.fill = (data[0].status == 0)?'#14A525':'#f00';\r",
+                    "        if(scopeIn === 0){\r",
+                    "            var dateCurrent = new Date(data[0].ping_date);\r",
+                    "            console.log('dateCurrent',dateCurrent);\r",
+                    "            timeAxis.fromDate = dateCurrent;\r",
+                    "            timeAxis.toDate = Ext.Date.add(dateCurrent, Ext.Date.MINUTE, 1);\r",
+                    "        }\r",
+                    "        if(Ext.Date.format(timeAxis.toDate, 'Y-m-d H:i:s') < data[0].ping_date){\r",
+                    "            markerIndex = 1;\r",
+                    "            timeAxis.toDate = new Date(data[0].ping_date);\r",
+                    "            timeAxis.fromDate = new Date(objService.pings[objService.pings.length - 13].ping_date);\r",
+                    "            chart.markerIndex = markerIndex;\r",
+                    "        }\r",
+                    "        console.log('toDate', timeAxis.toDate);\r",
+                    "        console.log('fromDate', timeAxis.fromDate);\r",
+                    "        console.log('response.responseText',objService.pings);\r",
+                    "\r",
+                    "        var pingStore = me.getPingStoreStore();\r",
+                    "\r",
+                    "        pingStore.loadData(objService.pings);\r",
+                    "    }\r",
+                    "});"
+                ]
+            },
+            "designerId": "a36fb1c5-e06e-4d49-a8ea-1148a4c62c8e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "idService"
+                ],
+                "fn": "searchServiceInPings",
+                "implHandler": [
+                    "var ix = 0;\r",
+                    "Ext.Array.each(this.dataPings, function(obj){\r",
+                    "    if(obj.id == idService){\r",
+                    "        return false;\r",
+                    "    }\r",
+                    "    ix++;\r",
+                    "});\r",
+                    "\r",
+                    "return ix;"
+                ]
+            },
+            "designerId": "8c45c889-6259-4c64-bc91-bfd146d09f63"
+        }
+    ]
+}
