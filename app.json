@@ -1,8 +1,15 @@
 {
-   "name": "monitor",
+   "name": "monitorServices",
    "requires": [],
-   "id": "308ec55a-453d-411d-9a43-ec5ada2dbacc",
+   "id": "26bdfa59-43cb-45e0-9ff6-c9d3926c0410",
    "resources": [
       "resources/css/main.css"
-   ]
+   ],
+   "_architect": {
+      "_comment": "Please don't edit. This is Architect data.",
+      "resources": [
+         "resources/css/main.css"
+      ],
+      "requires": []
+   }
 }

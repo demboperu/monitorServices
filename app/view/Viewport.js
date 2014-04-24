@@ -1,8 +1,8 @@
-Ext.define('monitor.view.Viewport', {
+Ext.define('monitorServices.view.Viewport', {
     extend: 'Ext.container.Viewport',
     requires:[
         'Ext.layout.container.Fit',
-        'monitor.view.Main'
+        'monitorServices.view.Main'
     ],
 
     layout: {

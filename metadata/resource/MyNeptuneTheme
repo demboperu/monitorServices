@@ -11,10 +11,6 @@
     "designerId": "4a6d20f4-11f7-483f-bf6c-a76eb8cff0b6",
     "storage": {
         "needsCompile": false,
-        "simple": {
-            "pkgVersion": 1,
-            "pkgPath": "packages"
-        },
         "nameIndex": 1,
         "varData": {}
     }

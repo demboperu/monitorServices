@@ -1,13 +1,13 @@
 {
     "name": "ext-theme-neptune-4a6d20f4-11f7-483f-bf6c-a76eb8cff0b6",
     "type": "theme",
-    "creator": "Architect",
-    "summary": "Architect created theme. Edit through Architect. Manual edits here will likly be discarded.",
-    "detailedDescription": "Architect created theme. Edit through Architect. Manual edits here will likly be discarded.",
+    "creator": "anonymous",
+    "summary": "Short summary",
+    "detailedDescription": "Long description of package",
     "version": "1.0.0",
     "compatVersion": "1.0.0",
     "format": "1",
     "local": true,
     "requires": [],
-    "extend": "ext-theme-neptune"
+    "extend": "ext-theme-classic"
 }

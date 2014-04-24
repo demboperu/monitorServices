@@ -1,4 +1,4 @@
-Ext.define('monitor.view.Main', {
+Ext.define('monitorServices.view.Main', {
     extend: 'Ext.container.Container',
     requires:[
         'Ext.tab.Panel',

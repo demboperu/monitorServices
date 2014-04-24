@@ -1,5 +1,5 @@
-Ext.define('monitor.Application', {
-    name: 'monitor',
+Ext.define('monitorServices.Application', {
+    name: 'monitorServices',
 
     extend: 'Ext.app.Application',
 

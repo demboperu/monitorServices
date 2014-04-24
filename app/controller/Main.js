@@ -1,3 +1,3 @@
-Ext.define('monitor.controller.Main', {
+Ext.define('monitorServices.controller.Main', {
     extend: 'Ext.app.Controller'
 });

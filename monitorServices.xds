@@ -2,9 +2,7 @@
     "name": "monitorServices",
     "settings": {
         "cmd": {
-            "license": "gpl",
-            "cmdVersion": "4.0.1.45",
-            "frameworkVersion": "4.2.1.883"
+            "license": "gpl"
         },
         "canvasControls": {
             "viewportSize": {
@@ -14,27 +12,13 @@
                 "width": null
             }
         },
-        "urlPrefix": "http://localhost:4000/monitorServices/",
-        "exportPath": "",
-        "spacesToIndent": 4,
-        "sdkPath": "",
-        "lineEnding": "CRLF",
-        "genTimestamps": false,
-        "cacheBust": false,
-        "buildShouldOverwriteIndex": true,
-        "generateArchitectVersion": true,
-        "license": "gpl",
-        "customPath": "",
-        "lastBuildSelection": {
-            "value": "webBuild",
-            "display": "Build web app"
-        },
-        "displayfield-ExtBox1-1484-inputEl": "Not Installed"
+        "urlPrefix": "",
+        "exportPath": ""
     },
-    "xdsVersion": "3.0.2",
-    "xdsBuild": 1375,
+    "xdsVersion": "3.0.0",
+    "xdsBuild": 1337,
     "schemaVersion": 1,
-    "upgradeVersion": 300000000004,
+    "upgradeVersion": 300000000003,
     "framework": "ext42",
     "viewOrderMap": {
         "view": [
@@ -42,16 +26,16 @@
             "23afc0a3-a1b1-4f10-9622-02ebe055e576"
         ],
         "store": [
-            "0b3e9ea8-52b8-4463-9375-44b5a27689ff",
+            "f70e510e-bae1-4a14-95e1-0a0b856cf042",
             "47f9add9-8199-4df9-8382-dcd004c50caf",
-            "f70e510e-bae1-4a14-95e1-0a0b856cf042"
+            "0b3e9ea8-52b8-4463-9375-44b5a27689ff"
         ],
         "controller": [
             "2856dba3-c512-4b02-8986-a3e844ab0885"
         ],
         "model": [
-            "44284846-393f-4336-9e37-fe0ed78e1e2a",
-            "dab724de-6856-4f6b-abbf-d6b584c5531a"
+            "dab724de-6856-4f6b-abbf-d6b584c5531a",
+            "44284846-393f-4336-9e37-fe0ed78e1e2a"
         ],
         "resource": [
             "67363d08-999e-4648-b11d-5d9fe657da91",
