@@ -71,23 +71,23 @@
                     "    //timeout: 5000,\r",
                     "    success: function(response) {\r",
                     "        console.log('response');\r",
-                    "        \r",
+                    "\r",
                     "        test = response;\r",
                     "        if(response.responseText){\r",
                     "            response.responseText = JSON.parse(response.responseText);\r",
                     "            if(response.responseText.response)\r",
                     "                response.responseText.response = JSON.parse(response.responseText.response);\r",
                     "        }\r",
-                    "        \r",
-                    "        \r",
+                    "\r",
+                    "\r",
                     "        var formatedJson = me.syntaxHighlight(response.responseText);\r",
-                    "        \r",
+                    "\r",
                     "        details.update({'response':formatedJson});\r",
                     "        //details.labelJson.update(formatedJson);\r",
-                    "        \r",
+                    "\r",
                     "    },\r",
                     "    failure: function(response){\r",
-                    "        \r",
+                    "\r",
                     "        console.log(response.responseText);\r",
                     "        var formatedJson = me.syntaxHighlight(response.responseText);\r",
                     "        details.update({response:formatedJson});\r",
@@ -453,6 +453,8 @@
                     "// //                     console.log(me.dataPings);\r",
                     "//                 }\r",
                     "            });\r",
+                    "\r",
+                    "            me.filterByGroupName(taskStore);\r",
                     "        },\r",
                     "        failure: function(response){\r",
                     "            record.set('state','fail');\r",
@@ -471,7 +473,7 @@
                     "//             console.log(\"success\");\r",
                     "//         }\r",
                     "//     });\r",
-                    "    me.loadPings(me.idService,1);\r",
+                    "//    me.loadPings(me.idService,1); // Moy\r",
                     "\r",
                     "        //pingStore.insert(0,Ext.data.Record({'status':1,'ping_date':new Date()}),'-1');\r",
                     "\r",
@@ -542,7 +544,8 @@
                     "\r",
                     "//console.log('data',dataService);\r",
                     "Ext.Ajax.request({\r",
-                    "    url: 'http://10.50.24.160:3000/request',\r",
+                    "//    url: 'http://10.50.24.160:3000/request',\r",
+                    "    url: 'http://10.50.24.132:3000/request',\r",
                     "    params: dataService,\r",
                     "    method: 'post',\r",
                     "    //timeout: 5000,\r",
@@ -680,6 +683,79 @@
                 ]
             },
             "designerId": "8c45c889-6259-4c64-bc91-bfd146d09f63"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#cboGroup",
+                "designer|targetType": "Ext.form.field.ComboBox",
+                "fn": "onCboGroupSelect",
+                "implHandler": [
+                    "var taskStore = this.getTasksStore();\r",
+                    "this.filterByGroupName(taskStore);"
+                ],
+                "name": "select",
+                "scope": "me"
+            },
+            "designerId": "065d5ab7-ef27-4190-95b7-01f580ba21f5"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#cboGroup",
+                "designer|targetType": "Ext.form.field.ComboBox",
+                "fn": "onCboGroupChange",
+                "implHandler": [
+                    "var taskStore = this.getTasksStore();\r",
+                    "var combo = Ext.ComponentQuery.query('#cboGroup')[0];\r",
+                    "if(combo.value !== null && combo.value.length === 0){\r",
+                    "    taskStore.clearFilter();\r",
+                    "    combo.setValue('Filter by Group');\r",
+                    "}"
+                ],
+                "name": "change",
+                "scope": "me"
+            },
+            "designerId": "4d0b5fad-d5be-4edf-9912-c23f19ac995e"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "taskStore"
+                ],
+                "fn": "filterByGroupName",
+                "implHandler": [
+                    "var comboValues = Ext.ComponentQuery.query('#cboGroup')[0].value; // Getting combo values from comboGroup\r",
+                    "\r",
+                    "if(comboValues!== null && comboValues.length > 0 && comboValues[0]!=='Filter by Group'){\r",
+                    "    taskStore.clearFilter();\r",
+                    "    taskStore.filterBy(function (record) {\r",
+                    "        var result = false;\r",
+                    "        result = Ext.Array.contains(comboValues,record.data.group); // Verifying if exits group within selected values from ComboBox\r",
+                    "        if(result){\r",
+                    "            return record;\r",
+                    "        }\r",
+                    "    });\r",
+                    "}"
+                ]
+            },
+            "designerId": "77da4875-c1f0-40d3-8793-d5497fe13a7b"
         }
     ]
 }

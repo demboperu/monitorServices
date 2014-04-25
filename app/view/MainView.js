@@ -59,6 +59,17 @@ Ext.define('monitor.view.MainView', {
                                     itemId: 'addButton',
                                     icon: 'resources/images/add.png',
                                     text: 'Add Task'
+                                },
+                                {
+                                    xtype: 'combobox',
+                                    itemId: 'cboGroup',
+                                    fieldLabel: 'Filter by Group',
+                                    hideLabel: true,
+                                    value: 'Filter by Group',
+                                    editable: false,
+                                    displayField: 'groupName',
+                                    multiSelect: true,
+                                    store: 'Groups'
                                 }
                             ]
                         }

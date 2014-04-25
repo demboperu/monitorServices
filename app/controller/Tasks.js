@@ -239,6 +239,20 @@ Ext.define('monitor.controller.Tasks', {
 
     },
 
+    onCboGroupSelect: function(combo, records, eOpts) {
+        var taskStore = this.getTasksStore();
+        this.filterByGroupName(taskStore);
+    },
+
+    onCboGroupChange: function(field, newValue, oldValue, eOpts) {
+        var taskStore = this.getTasksStore();
+        var combo = Ext.ComponentQuery.query('#cboGroup')[0];
+        if(combo.value !== null && combo.value.length === 0){
+            taskStore.clearFilter();
+            combo.setValue('Filter by Group');
+        }
+    },
+
     init: function(application) {
                 var me = this;
 
@@ -313,6 +327,8 @@ Ext.define('monitor.controller.Tasks', {
                                 // //                     console.log(me.dataPings);
                                 //                 }
                             });
+
+                            me.filterByGroupName(taskStore);
                         },
                         failure: function(response){
                             record.set('state','fail');
@@ -331,7 +347,7 @@ Ext.define('monitor.controller.Tasks', {
                     //             console.log("success");
                     //         }
                     //     });
-                    me.loadPings(me.idService,1);
+                    //    me.loadPings(me.idService,1); // Moy
 
                     //pingStore.insert(0,Ext.data.Record({'status':1,'ping_date':new Date()}),'-1');
 
@@ -355,6 +371,10 @@ Ext.define('monitor.controller.Tasks', {
             },
             "#detailsPanel #removeButton": {
                 click: this.remove
+            },
+            "#cboGroup": {
+                select: this.onCboGroupSelect,
+                change: this.onCboGroupChange
             }
         });
     },
@@ -394,7 +414,8 @@ Ext.define('monitor.controller.Tasks', {
 
         //console.log('data',dataService);
         Ext.Ajax.request({
-            url: 'http://10.50.24.160:3000/request',
+        //    url: 'http://10.50.24.160:3000/request',
+            url: 'http://10.50.24.132:3000/request',
             params: dataService,
             method: 'post',
             //timeout: 5000,
@@ -486,6 +507,21 @@ Ext.define('monitor.controller.Tasks', {
         });
 
         return ix;
+    },
+
+    filterByGroupName: function(taskStore) {
+        var comboValues = Ext.ComponentQuery.query('#cboGroup')[0].value; // Getting combo values from comboGroup
+
+        if(comboValues!== null && comboValues.length > 0 && comboValues[0]!=='Filter by Group'){
+            taskStore.clearFilter();
+            taskStore.filterBy(function (record) {
+                var result = false;
+                result = Ext.Array.contains(comboValues,record.data.group); // Verifying if exits group within selected values from ComboBox
+                if(result){
+                    return record;
+                }
+            });
+        }
     }
 
 });

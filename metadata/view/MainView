@@ -81,6 +81,30 @@
                                 "text": "Add Task"
                             },
                             "designerId": "bea93a2e-0317-4e11-8c26-d37ea2ff1afa"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": null,
+                                "displayField": "groupName",
+                                "editable": false,
+                                "fieldLabel": "Filter by Group",
+                                "hideLabel": true,
+                                "itemId": "cboGroup",
+                                "layout|flex": null,
+                                "multiSelect": true,
+                                "name": null,
+                                "store": "Groups",
+                                "value": [
+                                    "'Filter by Group'"
+                                ]
+                            },
+                            "designerId": "fdbb92ae-e19c-4ca2-8f9d-420f145fd56b"
                         }
                     ]
                 },
@@ -94,6 +118,7 @@
                     "userConfig": {
                         "bodyBorder": true,
                         "border": "2 2 2 2",
+                        "designer|displayName": null,
                         "dock": null,
                         "forceFit": true,
                         "id": "",

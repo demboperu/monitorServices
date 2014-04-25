@@ -18,7 +18,8 @@
             "Ext.window.MessageBox"
         ],
         "stores": [
-            "PingStore"
+            "PingStore",
+            "Groups"
         ],
         "views": [
             "TaskForm",

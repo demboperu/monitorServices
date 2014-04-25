@@ -29,7 +29,8 @@ Ext.application({
         'Ping'
     ],
     stores: [
-        'PingStore'
+        'PingStore',
+        'Groups'
     ],
     views: [
         'TaskForm',

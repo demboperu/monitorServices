@@ -6,17 +6,18 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoLoad": true,
         "data": [
             "[\r",
-            "    { id: 1, priority: \"High\" },\r",
-            "    { id: 2, priority: \"Normal\" },\r",
-            "    { id: 3, priority: \"Low\" }\r",
+            "    { id: 1, groupName: \"imac\" },\r",
+            "    { id: 2, groupName: \"SIT\" },\r",
+            "    { id: 3, groupName: \"INT-QA\" }\r",
             "]"
         ],
-        "designer|userClassName": "Priorities",
-        "storeId": "Priorities"
+        "designer|userClassName": "Groups",
+        "storeId": "Groups"
     },
-    "designerId": "47f9add9-8199-4df9-8382-dcd004c50caf",
+    "designerId": "73e2344d-a96b-4545-9ecb-93e69389d8be",
     "cn": [
         {
             "type": "Ext.data.Field",
@@ -28,7 +29,7 @@
             "userConfig": {
                 "name": "id"
             },
-            "designerId": "0c012870-ae14-4138-9673-b6e1546068db"
+            "designerId": "eb327f6b-8a03-41ab-ac66-9a2e6012aabc"
         },
         {
             "type": "Ext.data.Field",
@@ -38,9 +39,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "priority"
+                "name": "groupName"
             },
-            "designerId": "3d278684-146d-44f3-933e-c2f8dc900b4a"
+            "designerId": "a3f6c1f6-d1a1-45f9-9c24-1a67affb2ee5"
         }
     ]
 }
