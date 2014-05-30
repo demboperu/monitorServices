@@ -7,14 +7,13 @@
         "resource": true,
         "698b7864-df89-4b9c-959f-0212282d4ead": {
             "id": "698b7864-df89-4b9c-959f-0212282d4ead",
+            "expanded": false,
             "cn": [
                 {
                     "id": "210be6aa-2456-4659-bafc-73e452201e3f",
-                    "expanded": false,
                     "cn": [
                         {
                             "id": "e4d9d8b0-eb3b-4e18-9fb8-e19c2f8cac69",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "7fb76c5b-6db8-43ae-b260-7ec2cba7ff16"
@@ -70,7 +69,6 @@
                         },
                         {
                             "id": "5081511a-b727-4226-93b4-5e5d714628fd",
-                            "expanded": false,
                             "cn": [
                                 {
                                     "id": "f4e02571-29a5-44ce-b65a-5a91fc94b437",
@@ -230,7 +228,6 @@
         },
         "dab724de-6856-4f6b-abbf-d6b584c5531a": {
             "id": "dab724de-6856-4f6b-abbf-d6b584c5531a",
-            "expanded": false,
             "cn": [
                 {
                     "id": "3b3b1f13-3dc8-48ca-b1f2-80bf0636a138"
@@ -290,7 +287,6 @@
         },
         "2856dba3-c512-4b02-8986-a3e844ab0885": {
             "id": "2856dba3-c512-4b02-8986-a3e844ab0885",
-            "expanded": false,
             "cn": [
                 {
                     "id": "df446b75-e4d7-445e-89e4-61f7a5aefeae"
@@ -368,11 +364,11 @@
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "698b7864-df89-4b9c-959f-0212282d4ead",
-        "selectedInstance": "fdbb92ae-e19c-4ca2-8f9d-420f145fd56b"
+        "topInstance": "2856dba3-c512-4b02-8986-a3e844ab0885",
+        "selectedInstance": "a36fb1c5-e06e-4d49-a8ea-1148a4c62c8e"
     },
     "codeState": {
-        "topInstance": "698b7864-df89-4b9c-959f-0212282d4ead"
+        "topInstance": "2856dba3-c512-4b02-8986-a3e844ab0885"
     },
     "editMode": "code",
     "userSettings": {}

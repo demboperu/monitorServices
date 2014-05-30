@@ -20,6 +20,7 @@ Ext.define('monitor.controller.Tasks', {
         
     ],
     idService: 0,
+    indexPing: 0,
     stores: [
         'Tasks',
         'Priorities',
@@ -51,6 +52,7 @@ Ext.define('monitor.controller.Tasks', {
         };
         this.dataPings = [{pings : []}];
         this.idService = record.data.id;
+        this.indexPing = 0;
 
         Ext.Ajax.request({
             url: 'http://10.50.24.132:3000/request',
@@ -58,7 +60,7 @@ Ext.define('monitor.controller.Tasks', {
             method: 'post',
             //timeout: 5000,
             success: function(response) {
-                console.log('response');
+        //         console.log('response');
 
                 test = response;
                 if(response.responseText){
@@ -76,7 +78,7 @@ Ext.define('monitor.controller.Tasks', {
             },
             failure: function(response){
 
-                console.log(response.responseText);
+        //         console.log(response.responseText);
                 var formatedJson = me.syntaxHighlight(response.responseText);
                 details.update({response:formatedJson});
             }
@@ -105,8 +107,8 @@ Ext.define('monitor.controller.Tasks', {
         // //    console.log('+1');
 
         // });
-
-        //this.loadPings(this.idService,0);
+        if(this.idService)
+        this.loadPings(this.idService,0,'Y');
 
 
 
@@ -299,7 +301,6 @@ Ext.define('monitor.controller.Tasks', {
                 me.dataPings = [{pings : []}];
                 setInterval(function() {
 
-
                     Ext.Ajax.request({
                         url: 'http://10.50.24.132:3000/elements',
                         method: 'get',
@@ -310,7 +311,6 @@ Ext.define('monitor.controller.Tasks', {
 
                             resp.forEach(function(value,index){
                                 var record = taskStore.findRecord('id',value.id);
-                                //                 console.log('status',value.last_status===0);
                                 if(value.last_status===0){
                                     record.set('icon','success.png');
                                     record.set('state', Ext.Date.fuzzy(new Date(value.last_status_change).getTime()));
@@ -320,12 +320,6 @@ Ext.define('monitor.controller.Tasks', {
                                 }
                                 record.set('response',me.syntaxHighlight(resp.response));
                                 record.set('result',resp.result);
-                                //                 if(registerService === 0){
-                                //                     var servicePing = {name:record.get('name'),id:record.get('id'),pings:[]};
-                                //                     me.dataPings.push(servicePing);
-                                //                     registerService ++;
-                                // //                     console.log(me.dataPings);
-                                //                 }
                             });
 
                             me.filterByGroupName(taskStore);
@@ -337,21 +331,41 @@ Ext.define('monitor.controller.Tasks', {
                             record.set('result','timeOut');
                         }
                     });
+                    if(me.idService)
+                    me.loadPings(me.idService,1);
 
+                }, 20000);
 
+                Ext.Ajax.request({
+                    url: 'http://10.50.24.132:3000/elements',
+                    method: 'get',
+                    success: function(response) {
 
-                    //     var pingStore = me.getPingStoreStore();
+                        var resp = JSON.parse(response.responseText);
+                        taskStore.loadRawData(resp);
 
-                    //     pingStore.load({
-                    //         callback: function(records, operation, success) {
-                    //             console.log("success");
-                    //         }
-                    //     });
-                    //    me.loadPings(me.idService,1); // Moy
+                        resp.forEach(function(value,index){
+                            var record = taskStore.findRecord('id',value.id);
+                            if(value.last_status===0){
+                                record.set('icon','success.png');
+                                record.set('state', Ext.Date.fuzzy(new Date(value.last_status_change).getTime()));
+                            }else{
+                                record.set('icon','fail.png');
+                                record.set('state', Ext.Date.fuzzy(new Date(value.last_status_change).getTime()));
+                            }
+                            record.set('response',me.syntaxHighlight(resp.response));
+                            record.set('result',resp.result);
+                        });
 
-                    //pingStore.insert(0,Ext.data.Record({'status':1,'ping_date':new Date()}),'-1');
-
-                }, 5000);
+                        me.filterByGroupName(taskStore);
+                    },
+                    failure: function(response){
+                        record.set('state','fail');
+                        record.set('icon','fail.png');
+                        record.set('response', '');
+                        record.set('result','timeOut');
+                    }
+                });
 
         this.control({
             "#gridPanel": {
@@ -458,37 +472,37 @@ Ext.define('monitor.controller.Tasks', {
         return json;
     },
 
-    loadPings: function(idService, scopeIn) {
+    loadPings: function(idService, scopeIn, lastHour) {
         var me = this;
         var chart = Ext.getCmp('chartStatus');
+        var lastHour = (lastHour)? '&lastHour=' + lastHour:'';
         Ext.Ajax.request({
             method : 'GET',
-            url : 'http://10.50.24.132:3000/pings?id=' + idService,
+            url : 'http://10.50.24.132:3000/pings?id=' + idService + lastHour,
             success : function(response){
                 var data = Ext.JSON.decode(response.responseText);
-        //         var idx = me.searchServiceInPings(idService);
                 var idx = 0;
                 var objService = me.dataPings[idx];
                 var markerIndex = chart.markerIndex || 0;
-                me.dataPings[idx].pings.push(data[0]);
                 var timeAxis = chart.axes.get(1);
                 var series = chart.series.get(0);
-                series.markerConfig.fill = (data[0].status == 0)?'#14A525':'#f00';
+                series.markerConfig.fill = (data[0].status === 0)?'#14A525':'#f00';
                 if(scopeIn === 0){
+                    me.dataPings[idx].pings = (data);
                     var dateCurrent = new Date(data[0].ping_date);
-                    console.log('dateCurrent',dateCurrent);
                     timeAxis.fromDate = dateCurrent;
-                    timeAxis.toDate = Ext.Date.add(dateCurrent, Ext.Date.MINUTE, 1);
+                    timeAxis.toDate = Ext.Date.add(dateCurrent, Ext.Date.HOUR, 1);
+                }else{
+                    if(me.dataPings[idx].pings[me.dataPings[idx].pings.length-1].id!==data[0].id)
+                    me.dataPings[idx].pings.push(data[0]);
                 }
                 if(Ext.Date.format(timeAxis.toDate, 'Y-m-d H:i:s') < data[0].ping_date){
                     markerIndex = 1;
                     timeAxis.toDate = new Date(data[0].ping_date);
-                    timeAxis.fromDate = new Date(objService.pings[objService.pings.length - 13].ping_date);
+                    timeAxis.fromDate = new Date(objService.pings[me.indexPing].ping_date);
+                    me.indexPing ++;
                     chart.markerIndex = markerIndex;
                 }
-                console.log('toDate', timeAxis.toDate);
-                console.log('fromDate', timeAxis.fromDate);
-                console.log('response.responseText',objService.pings);
 
                 var pingStore = me.getPingStoreStore();
 

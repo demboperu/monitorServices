@@ -208,7 +208,7 @@ Ext.define('monitor.view.MainView', {
                                                                 odd: {
                                                                     fill: '#dedede',
                                                                     stroke: '#ddd',
-                                                                    'stroke-width': 0.5
+                                                                    'stroke-width': 0.2
                                                                 }
                                                             },
                                                             title: 'Status',
@@ -244,8 +244,8 @@ Ext.define('monitor.view.MainView', {
                                                             xField: 'ping_date',
                                                             yField: 'status',
                                                             markerConfig: {
-                                                                radius: 5,
-                                                                size: 5,
+                                                                radius: 3,
+                                                                size: 3,
                                                                 fill: '#f00'
                                                             }
                                                         }
